@@ -10,8 +10,10 @@ import com.google.cloud.firestore.WriteResult;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
+import net.minidev.json.JSONArray;
 import net.minidev.json.parser.ParseException;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.cloud.FirestoreClient;
@@ -20,6 +22,7 @@ import com.karkai.modal.MaterialFolder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -50,21 +53,15 @@ public class MaterialService {
 
         MaterialFolder materialFolder = document.toObject(MaterialFolder.class);
 
-        JSONObject jsonObject = new JsonService().jsonParse(materialFolder.getJsonLink());
+        org.json.JSONArray jsonArray = (org.json.JSONArray) new JsonService().jsonParse(materialFolder.getJsonLink()).get("material");
 
-            String jsonString = jsonObject.toString();
 
             ObjectMapper objectMapper = new ObjectMapper();
 
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             List<Material> materials=new ArrayList<Material>();
-
-            try{
-                materials = objectMapper.readValue(jsonString, List.class);
-                System.out.print(materials);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+            materials = objectMapper.readValue(jsonArray.toString(), new TypeReference<List<Material>>(){});
+            System.out.println(materials);
         return materials;
     }
 
