@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.cloud.FirestoreClient;
 import com.karkai.modal.Material;
-import com.karkai.modal.MaterialFolder;
+import com.karkai.modal.Folder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,9 +51,9 @@ public class MaterialService {
         
         DocumentSnapshot document = future.get();
 
-        MaterialFolder materialFolder = document.toObject(MaterialFolder.class);
+        Folder Folder = document.toObject(Folder.class);
 
-        org.json.JSONArray jsonArray = (org.json.JSONArray) new JsonService().jsonParse(materialFolder.getJsonLink()).get("material");
+        org.json.JSONArray jsonArray = (org.json.JSONArray) new JsonService().jsonParse(Folder.getJsonLink()).get("material");
 
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -66,7 +66,7 @@ public class MaterialService {
     }
 
     // add new material in firebase
-    public String addMaterial(MaterialFolder material) {
+    public String addMaterial(Folder material) {
         Firestore firestore= FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture=firestore.collection(material.getExam()+"Materials").document(material.getSubject()+material.getLanguage()).set(material);
         return "success";

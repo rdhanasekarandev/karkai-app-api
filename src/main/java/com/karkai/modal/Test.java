@@ -1,28 +1,19 @@
 package com.karkai.modal;
 
 public class Test {
-    String id;
-    String title;
+    String topic;
     Boolean isPrime;
     String noOfQuestions;
     String jsonLink;
     String exam;
     String subject;
 
-    public String getId() {
-        return id;
+    public String getTopic() {
+        return topic;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
     public Boolean getIsPrime() {
         return isPrime;

@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import com.karkai.modal.Question;
+import com.karkai.modal.Duo;
+import com.karkai.modal.GetMaterial;
 import com.karkai.modal.Id;
 import com.karkai.modal.Test;
+import com.karkai.modal.TestData;
 import com.karkai.service.TestService;
 
 @RestController
@@ -21,18 +24,26 @@ public class TestController {
     @Autowired
     private TestService testService;
 
-
-    //  get questions by exam
-    @PostMapping("/getByExam")
-    public List<Test> getTestByExam(@RequestBody Id id) throws ExecutionException, InterruptedException{
-        return testService.getTestsByExam(id.getId());
+    // get Test data
+    @PostMapping("/getTestData")
+    public TestData getAllMaterials(@RequestBody GetMaterial getMaterial)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        return testService.getTestData(getMaterial.getExam(), getMaterial.getLanguage());
     }
 
-    //  get questions
-    @PostMapping("/getQuestions")
-    public List<Question> getAllMaterials(@RequestBody Id id) throws ExecutionException, InterruptedException, IOException, ParseException {
-        return testService.getTestQuestionByJsonLink(id.getId());
+    // get tests
+    @PostMapping("/getTests")
+    public List<Test> getTests(@RequestBody GetMaterial getMaterial)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        return testService.getTestsBySubject(getMaterial.getSubject(), getMaterial.getExam(),
+                getMaterial.getLanguage());
     }
 
-    
+    // get question
+    @PostMapping("/getQuestion")
+    public List<Question> getQuestions(@RequestBody Id id)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        return testService.getTestQuestions(id.getId());
+    }
+
 }

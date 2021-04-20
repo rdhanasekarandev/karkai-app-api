@@ -3,7 +3,7 @@ package com.karkai.controller;
 import com.google.api.client.json.Json;
 import com.karkai.modal.GetMaterial;
 import com.karkai.modal.Material;
-import com.karkai.modal.MaterialFolder;
+import com.karkai.modal.Folder;
 import com.karkai.service.JsonService;
 import com.karkai.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class MaterialController {
 
     //  create new User
     @PostMapping("/add")
-    public String addNewMaterial(@RequestBody MaterialFolder material){
+    public String addNewMaterial(@RequestBody Folder material){
         return materialService.addMaterial(material);
     }
 

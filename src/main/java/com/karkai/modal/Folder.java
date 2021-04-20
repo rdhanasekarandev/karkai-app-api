@@ -1,6 +1,6 @@
 package com.karkai.modal;
 
-public class MaterialFolder {
+public class Folder {
 
     String jsonLink;
     String subject;
