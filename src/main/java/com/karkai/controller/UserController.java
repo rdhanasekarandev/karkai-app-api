@@ -1,5 +1,8 @@
 package com.karkai.controller;
 
+import com.karkai.modal.Id;
+import com.karkai.modal.Update;
+import com.karkai.modal.UpdatePrime;
 import com.karkai.modal.User;
 import com.karkai.service.UserService;
 import net.minidev.json.parser.ParseException;
@@ -23,10 +26,21 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    //  create new User
-    @GetMapping("/get")
+    //  get All User
+    @GetMapping("/getAll")
     public List<User> getAllUser() throws ExecutionException, InterruptedException, IOException, ParseException {
         return userService.getAllUser();
     }
 
+    //  get User
+    @PostMapping("/get")
+    public User getUser(@RequestBody Id id) throws ExecutionException, InterruptedException, IOException, ParseException {
+        return userService.getUserById(id.getId());
+    }
+
+    //  create new User
+    @PostMapping("/update")
+    public String updateEmployeeDetails(@RequestBody Update update) throws ExecutionException, InterruptedException {
+        return userService.updateUser(update.getId(),update.getField(),update.getValue());
+    }
 }

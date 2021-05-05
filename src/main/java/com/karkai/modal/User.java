@@ -1,25 +1,29 @@
 package com.karkai.modal;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class User {
 
     String id;
     String fName;
     String lName;
     String email;
-    String password;
     String phone;
     String image;
     String std;
     String exam;
-    String institute;
+    String isPrimeUser;
+    String language;
+    String city;
 
-    public String getPassword() {
-        return password;
+    public String getIsPrimeUser() {
+        return isPrimeUser;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setIsPrimeUser(String isPrimeUser) {
+        this.isPrimeUser = isPrimeUser;
     }
+
 
     public String getStd() {
         return std;
@@ -37,12 +41,12 @@ public class User {
         this.exam = exam;
     }
 
-    public String getInstitute() {
-        return institute;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setInstitute(String institute) {
-        this.institute = institute;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getCity() {
@@ -52,9 +56,6 @@ public class User {
     public void setCity(String city) {
         this.city = city;
     }
-
-    String city;
-
 
     public String getId() {
         return id;
