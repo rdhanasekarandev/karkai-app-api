@@ -11,10 +11,57 @@ public class User {
     String phone;
     String image;
     String std;
+
     String exam;
     String isPrimeUser;
     String language;
+    int totalScore;
+    int correct;
+    int wrong;
+    int skipped;
+    int timeUp;
     String city;
+
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public int getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(int correct) {
+        this.correct = correct;
+    }
+
+    public int getWrong() {
+        return wrong;
+    }
+
+    public void setWrong(int wrong) {
+        this.wrong = wrong;
+    }
+
+    public int getSkipped() {
+        return skipped;
+    }
+
+    public void setSkipped(int skipped) {
+        this.skipped = skipped;
+    }
+
+    public int getTimeUp() {
+        return timeUp;
+    }
+
+    public void setTimeUp(int timeUp) {
+        this.timeUp = timeUp;
+    }
 
     public String getIsPrimeUser() {
         return isPrimeUser;

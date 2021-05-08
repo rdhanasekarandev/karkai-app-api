@@ -1,5 +1,6 @@
 package com.karkai.service;
 
+import org.json.JSONArray;
 import org.springframework.stereotype.Component;
 
 import net.minidev.json.parser.ParseException;
@@ -51,6 +52,41 @@ public class TestService {
         System.out.println(tests);
         return tests;
     }
+
+    // get daily questions
+    public List<Question> getDailyTestQuestions(String exam)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        org.json.JSONArray jsonArray = new JSONArray();
+        if(exam.equals("neet")) {
+             jsonArray = (org.json.JSONArray) new JsonService().jsonParse("https://firebasestorage.googleapis.com/v0/b/karkai-ac679.appspot.com/o/test%2Fta%2Fneet%2Fdaily%2Fdaily.json?alt=media&token=61e719fd-beb2-4edb-aa96-3883a358eba6").get("question");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        List<Question> questions = new ArrayList<Question>();
+        questions = objectMapper.readValue(jsonArray.toString(), new TypeReference<List<Question>>() {
+        });
+        System.out.println(questions);
+        return questions;
+    }
+
+    // get daily questions
+    public List<Question> getArcadeTestQuestions(String exam)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        org.json.JSONArray jsonArray = new JSONArray();
+        if(exam.equals("neet")) {
+            jsonArray = (org.json.JSONArray) new JsonService().jsonParse("https://firebasestorage.googleapis.com/v0/b/karkai-ac679.appspot.com/o/test%2Fta%2Fneet%2Farcade%2Farcade.json?alt=media&token=ed09f53b-fce7-4863-955f-37432cd8d311").get("question");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        List<Question> questions = new ArrayList<Question>();
+        questions = objectMapper.readValue(jsonArray.toString(), new TypeReference<List<Question>>() {
+        });
+        System.out.println(questions);
+        return questions;
+    }
+
 
     // get questions
     public List<Question> getTestQuestions(String jsonLink)

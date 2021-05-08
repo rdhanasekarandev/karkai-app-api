@@ -46,4 +46,18 @@ public class TestController {
         return testService.getTestQuestions(id.getId());
     }
 
+    // get question
+    @PostMapping("/getDaily")
+    public List<Question> getDailyQuestions(@RequestBody Id id)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        return testService.getDailyTestQuestions(id.getId());
+    }
+
+    // get question
+    @PostMapping("/getArcade")
+    public List<Question> getArcadeQuestions(@RequestBody Id id)
+            throws ExecutionException, InterruptedException, IOException, ParseException {
+        return testService.getArcadeTestQuestions(id.getId());
+    }
+
 }
