@@ -69,13 +69,13 @@ public class UserService {
         maxUser.setTotalScore(0);
 
         for(User user:users) {
-            if (user.getId() ==id) {
+            if (user.getId().equals(id)) {
                 currentUser = user;
             }
         }
         scorePosition.setCurrent(currentUser);
         for(User user:users) {
-            if (user.getTotalScore() > maxUser.getTotalScore()) {
+            if (user.getTotalScore() >= maxUser.getTotalScore()) {
                 maxUser = user;
             }
         }
@@ -96,8 +96,10 @@ public class UserService {
     int findCurrentUserPositon(List<User> users,User cUser){
         int i = users.size();
         for(User user:users){
-            if(user.getTotalScore()<cUser.getTotalScore()){
-                i = i-1;
+            if(!user.getId().equals(cUser.getId())) {
+                if (user.getTotalScore() <= cUser.getTotalScore()) {
+                    i = i - 1;
+                }
             }
         }
 
@@ -109,8 +111,10 @@ public class UserService {
         User maxUser = new User();
         maxUser.setTotalScore(0);
         for(User user:users){
-            if(user.getTotalScore()>maxUser.getTotalScore() && user.getTotalScore()<max.getTotalScore()){
-                maxUser = user;
+            if(!user.getId().equals(max.getId())) {
+                if (user.getTotalScore() >= maxUser.getTotalScore() && user.getTotalScore() <= max.getTotalScore()) {
+                    maxUser = user;
+                }
             }
         }
 
@@ -136,7 +140,7 @@ public class UserService {
     public String updateScore(Score score) {
         Firestore firestore= FirestoreClient.getFirestore();
         Map update = new HashMap();
-        update.put("total",score.getTotal());
+        update.put("totalScore",score.getTotal());
         update.put("correct",score.getCorrect());
         update.put("wrong",score.getWrong());
         update.put("skipped",score.getSkipped());

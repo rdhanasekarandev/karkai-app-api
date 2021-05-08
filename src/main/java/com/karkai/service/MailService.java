@@ -28,19 +28,12 @@ public class MailService {
 
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("rdhanasekarandeveloper@gmail.com"));
         msg.setSubject("KARKAI USER");
-        msg.setContent(contact.getMessage(), "text/html");
+
+        String content = "Date :"+new Date()+"\n"+"Name :"+contact.getName()+"\n"+"Email :"+contact.getEmail()+"\n"+"Phone :"+contact.getPhone()+"\n"+"Message :"+contact.getMessage();
+
+        msg.setContent(content, "text/html");
         msg.setSentDate(new Date());
 
-        MimeBodyPart messageBodyPart = new MimeBodyPart();
-        messageBodyPart.setContent("Tutorials point email", "text/html");
-
-        Multipart multipart = new MimeMultipart();
-        multipart.addBodyPart(messageBodyPart);
-        MimeBodyPart attachPart = new MimeBodyPart();
-
-        attachPart.attachFile("/var/tmp/image19.png");
-        multipart.addBodyPart(attachPart);
-        msg.setContent(multipart);
         Transport.send(msg);
         return "success";
     }

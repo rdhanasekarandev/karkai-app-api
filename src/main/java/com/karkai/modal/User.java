@@ -11,7 +11,6 @@ public class User {
     String phone;
     String image;
     String std;
-
     String exam;
     String isPrimeUser;
     String language;
