@@ -6,7 +6,7 @@ public class User {
 
     String id;
     String fName;
-    String lName;
+    String gender;
     String email;
     String phone;
     String image;
@@ -21,6 +21,13 @@ public class User {
     int timeUp;
     String city;
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public int getTotalScore() {
         return totalScore;
@@ -119,13 +126,6 @@ public class User {
         this.fName = fName;
     }
 
-    public String getlName() {
-        return lName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
 
     public String getEmail() {
         return email;
